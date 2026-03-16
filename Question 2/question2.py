@@ -1,4 +1,5 @@
 import csv
+import sys
 '''
 question2.py
   Author(s): Hafsa Ahmed [1396772], Marcus Le [1385741], Avraj Pannu [1376060]
@@ -18,7 +19,7 @@ question2.py
         party in each province, then merges the age‑group turnout information
         with the winning party.
 
-     Commandline Parameters: none
+     Commandline Parameters: Province
         
 
      References:
@@ -95,7 +96,11 @@ def get_turnout_by_age(filename):
         return None
     return turnout_data
 
-def main():
+def main(argv):
+    if len(argv) != 2:
+        print("Usage: question2.py <province_abbreviation>")
+        sys.exit(1)
+        
     affiliation_file = "43rd Election Turnout by Affiliation.csv"
     age_groups_file = "43rd Election Age Groups.csv"
 
@@ -108,32 +113,32 @@ def main():
     
     valid_provinces = list(winning_parties.keys())
 
-    while True:
-        prov = input(f"\nEnter a province/territory abbreviation ({', '.join(valid_provinces)}) or 'q' to quit: ").strip().upper()
-        
-        if prov == 'Q':
-            break
-            
-        if prov not in valid_provinces:
-            print(f"Invalid province abbreviation. Please enter one of: {', '.join(valid_provinces)}")
-            continue
-            
-        if prov not in turnout_data:
-            print(f"No turnout data found for province {prov}.")
-            continue
+   
+    # prov = input(f"\nEnter a province/territory abbreviation ({', '.join(valid_provinces)}) or 'q' to quit: ").strip().upper()
+    
+    prov = argv[1].strip().upper()
 
-        winning_party = winning_parties[prov]
-        prov_turnout = turnout_data[prov]
+    # if prov == 'Q':
+    #     break
         
-        print(f"\n--- Results for {prov} ---")
-        print(f"Winning Party: {winning_party}")
-        print("Voter Turnout by Age Group:")
+    if prov not in valid_provinces:
+        print(f"Invalid province abbreviation. Please enter one of: {', '.join(valid_provinces)}")
         
-        ages = []
-        turnouts = []
+    if prov not in turnout_data:
+        print(f"No turnout data found for province {prov}.")
+
+    winning_party = winning_parties[prov]
+    prov_turnout = turnout_data[prov]
+    
+    print(f"\n--- Results for {prov} ---")
+    print(f"Winning Party: {winning_party}")
+    print("Voter Turnout by Age Group:")
+    
+    ages = []
+    turnouts = []
 
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv)
 
