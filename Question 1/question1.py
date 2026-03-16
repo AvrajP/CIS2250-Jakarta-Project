@@ -6,11 +6,18 @@ question1.py
 
 
   Project: Milestone 3
-  Date of Last Update: Mar 9, 2026.
+  Date of Last Update: Mar 16, 2026.
 
   Functional Summary
-    
-     Commandline Parameters: 
+    This script compares job vacancy rates across Canadian provinces with the vote share of a 
+    specified political party in the 43rd Canadian federal election. It reads two CSV files:
+    * "job_vacancy.csv" – job vacancy rates by province/territory. 
+    * "election_results.csv" – vote share by party for each province/territory.
+    The program loads and cleans the data, then compares the job vacancy rates with 
+    the vote share of the specified political party across provinces.
+
+     Commandline Parameters:
+     Political Party
         
 
      References:
