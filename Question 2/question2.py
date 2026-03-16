@@ -164,9 +164,9 @@ def main(argv):
         ages.append(age_group)
         turnouts.append(turnout_pct)
 
-    plt.bar(ages, turnouts, color='blue')
-    plt.xlabel('Age Group')
-    plt.ylabel('Voter Turnout (%)')
+    plt.bar(ages, turnouts, color='deepskyblue')
+    plt.xlabel('Age Group', color='maroon')
+    plt.ylabel('Voter Turnout (%)', color='maroon')
     plt.title(f'Voter Turnout by Age Group in {prov} (Winning Party: {winning_party})')
     plt.xticks(rotation=45)
     plt.tight_layout()
