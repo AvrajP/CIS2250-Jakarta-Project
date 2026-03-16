@@ -75,6 +75,7 @@ def compare_data(job_vacancy, vote_percentages, political_party):
     vote_rates = []
     provinces = []
 
+    # compares the job vacancy rates with the voter turnout of the specified political party across provinces.
     for province in vote_percentages:
         if province in job_vacancy:
 
@@ -87,6 +88,7 @@ def compare_data(job_vacancy, vote_percentages, political_party):
             vote_rates.append(vote)
             provinces.append(province)
 
+    # Plotting the scatter plot using matplotlib
     plt.scatter(vacancy_rates, vote_rates, color="green")
     plt.title(f"Job Vacancy Rate vs Vote % for {political_party}")
     plt.xlabel("Job Vacancy Rate (%)", color="maroon") 
