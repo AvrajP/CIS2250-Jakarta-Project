@@ -70,6 +70,29 @@ def get_turnout_by_age(filename):
             provinces = headers[1:]
 
             current_prov = None 
+            total_votes = {}
+            
+            for row in reader:
+                if not row or len(row) < 5:
+                    continue
+
+                prov_col = row [0].strip()
+                if prov_col:
+                    current_prov = prov_col
+                    if current_prov not in turnout_data:
+                        turnout_data[current_prov] = []
+                
+                
+                votes_cast = int(row[3].strip().replace(',', ''))
+
+                if current_prov not in total_votes:
+                    total_votes[current_prov] = 0
+
+                total_votes[current_prov] += votes_cast
+            
+            f.seek(0)
+            next(reader)
+
             for row in reader:
                 if not row or len(row) < 5:
                     continue
@@ -81,11 +104,11 @@ def get_turnout_by_age(filename):
                         turnout_data[current_prov] = []
                 
                 age_group = row[1].strip()
-                turnout_pct_str = row[4].strip()
-                
-                if current_prov and age_group and turnout_pct_str:
+                votes_cast = int(row[3].strip().replace(',', ''))
+
+                if current_prov and age_group and votes_cast:
                     try:
-                        turnout_pct = float(turnout_pct_str)
+                        turnout_pct = (votes_cast / total_votes[current_prov]) * 100
 
                         turnout_data[current_prov].append((age_group, turnout_pct))
                     except ValueError:
@@ -136,7 +159,18 @@ def main(argv):
     
     ages = []
     turnouts = []
+    for age_group, turnout_pct in prov_turnout:
+        print(f"  {age_group}: {turnout_pct:.2f}%")
+        ages.append(age_group)
+        turnouts.append(turnout_pct)
 
+    plt.bar(ages, turnouts, color='blue')
+    plt.xlabel('Age Group')
+    plt.ylabel('Voter Turnout (%)')
+    plt.title(f'Voter Turnout by Age Group in {prov} (Winning Party: {winning_party})')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.show()
 
 
 if __name__ == "__main__":
