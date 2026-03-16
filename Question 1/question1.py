@@ -30,6 +30,7 @@ question1.py
 
 import csv
 import sys
+import matplotlib.pyplot as plt
 
 # Function #1: Load vacancy data (Data source #1)
 def load_job_vacancy(filename):
@@ -85,6 +86,13 @@ def compare_data(job_vacancy, vote_percentages, political_party):
             vacancy_rates.append(vacancy)
             vote_rates.append(vote)
             provinces.append(province)
+
+    plt.scatter(vacancy_rates, vote_rates, color="green")
+    plt.title(f"Job Vacancy Rate vs Vote % for {political_party}")
+    plt.xlabel("Job Vacancy Rate (%)", color="maroon") 
+    plt.ylabel("Vote %", color="maroon")
+    plt.grid()
+    plt.show() 
         
 
 
