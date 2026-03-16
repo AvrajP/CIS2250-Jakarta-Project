@@ -31,6 +31,7 @@ question2.py
 '''
 import matplotlib.pyplot as plt
 
+# function #1: Get winning party for each province
 def get_winning_party(filename):
 
     winning_parties = {}
@@ -61,6 +62,7 @@ def get_winning_party(filename):
 
     return winning_parties
 
+#function #2: Get voter turnout by age group for each province
 def get_turnout_by_age(filename):
     turnout_data = {}
     try:
@@ -72,7 +74,8 @@ def get_turnout_by_age(filename):
             current_prov = None 
             total_votes = {}
             
-            for row in reader:
+            # calculates total amount of votes for each province
+            for row in reader: 
                 if not row or len(row) < 5:
                     continue
 
@@ -90,9 +93,11 @@ def get_turnout_by_age(filename):
 
                 total_votes[current_prov] += votes_cast
             
+            # resets file pointer to beginning to calculate turnout percentages
             f.seek(0)
             next(reader)
 
+            # calculates turnout percentage for each age group in each province
             for row in reader:
                 if not row or len(row) < 5:
                     continue
@@ -119,6 +124,7 @@ def get_turnout_by_age(filename):
         return None
     return turnout_data
 
+#function #3: Main function to run the program
 def main(argv):
     if len(argv) != 2:
         print("Usage: question2.py <province_abbreviation>")
@@ -136,13 +142,7 @@ def main(argv):
     
     valid_provinces = list(winning_parties.keys())
 
-   
-    # prov = input(f"\nEnter a province/territory abbreviation ({', '.join(valid_provinces)}) or 'q' to quit: ").strip().upper()
-    
     prov = argv[1].strip().upper()
-
-    # if prov == 'Q':
-    #     break
         
     if prov not in valid_provinces:
         print(f"Invalid province abbreviation. Please enter one of: {', '.join(valid_provinces)}")
@@ -159,11 +159,13 @@ def main(argv):
     
     ages = []
     turnouts = []
+    # prints the turnout percentages for each age group in the specified province
     for age_group, turnout_pct in prov_turnout:
         print(f"  {age_group}: {turnout_pct:.2f}%")
         ages.append(age_group)
         turnouts.append(turnout_pct)
 
+    # Plotting the bar chart using matplotlib
     plt.bar(ages, turnouts, color='deepskyblue')
     plt.xlabel('Age Group', color='maroon')
     plt.ylabel('Voter Turnout (%)', color='maroon')
