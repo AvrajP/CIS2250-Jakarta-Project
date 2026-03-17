@@ -128,7 +128,11 @@ def compare_data(job_vacancy, vote_percentages, political_party):
     vote_rates = []
     provinces = []
 
+<<<<<<< HEAD
     # Loop through provinces in the vote data
+=======
+    # compares the job vacancy rates with the voter turnout of the specified political party across provinces.
+>>>>>>> 6e70cbca38ae7826b8d3e1f6bd80f6b3d2fd943d
     for province in vote_percentages:
         # Only compare if the province exists in both datasets
         if province in job_vacancy:
@@ -144,7 +148,11 @@ def compare_data(job_vacancy, vote_percentages, political_party):
             vote_rates.append(vote)
             provinces.append(province)
 
+<<<<<<< HEAD
     # Create a scatter plot to visualize the relationship of the data results
+=======
+    # Plotting the scatter plot using matplotlib
+>>>>>>> 6e70cbca38ae7826b8d3e1f6bd80f6b3d2fd943d
     plt.scatter(vacancy_rates, vote_rates, color="green")
 
     plt.title(f"Job Vacancy Rate vs Vote % for {political_party}") # Add a title to the graph
