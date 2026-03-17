@@ -128,7 +128,6 @@ def compare_data(job_vacancy, vote_percentages, political_party):
     vote_rates = []
     provinces = []
 
-<<<<<<< HEAD
     # compares job vacancy rates with the voter turnout of the specified political party across provinces
     for province in vote_percentages:
         # Only compare if the province exists in both datasets
