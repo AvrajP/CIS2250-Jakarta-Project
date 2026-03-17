@@ -24,7 +24,7 @@ This allows users to explore whether provinces with higher job vacancy rates ten
 
 ## Limitations
 - **Strict column names:** The program depends on exact column names in the CSV files (e.g.,        `"Province/territory"` and `"Job_Vacancy_Rate_Q2_2021"`).
-- **Ignored data handling:** Provinces that are not present in both datasets are ignored without notification.
+- **Ignored data:** Provinces that are not present in both datasets are ignored
 - **Single dataset:** The analysis only considers Q2 2021 job vacancy data and the 43rd federal election, so it does not reflect trends over time.
 - **Basic visualization:** The scatter plot does not label provinces or include advanced styling.
 
@@ -34,6 +34,6 @@ This allows users to explore whether provinces with higher job vacancy rates ten
 ## How to Run the Program
 Execute the program from the command line:
     python3 question1.py "Political Party Name"
-    
+
 Example:
-    python3 question1.py "Liberal"
+    python3 question1.py "Conservative"
