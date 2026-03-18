@@ -1,5 +1,3 @@
-import csv
-import sys
 '''
 question2.py
   Author(s): Hafsa Ahmed [1396772], Marcus Le [1385741], Avraj Pannu [1376060]
@@ -29,9 +27,24 @@ question2.py
             Official Voting Results", Record ID:
             https://open.canada.ca/data/en/dataset/199e5070-2fd5-49d3-aa21-aece08964d18/resource/12df72de-795e-44c4-8e94-fa86b6708ca5
 '''
+
+import csv
+import sys
 import matplotlib.pyplot as plt
 
-# function #1: Get winning party for each province
+"""
+Function #1: Get winning party (Data source #1)
+    This function reads election results from a CSV file and determines
+    the political party with the highest vote percentage in each province/territory.
+
+Parameter(s): 
+    - filename: Path to the CSV file containing vote share by party
+
+Return(s): 
+    dict, a dictionary where:
+    - key = province/territory abbreviation
+    - value = name of the winning political party
+"""
 def get_winning_party(filename):
 
     winning_parties = {}
@@ -62,7 +75,19 @@ def get_winning_party(filename):
 
     return winning_parties
 
-#function #2: Get voter turnout by age group for each province
+"""
+Function #2: Get voter turnout by age group (Data source #2)
+    This function reads voter turnout data from a CSV file and calculates
+    the percentage of votes contributed by each age group within each province.
+
+Parameter(s): 
+    - filename: Path to the CSV file containing voter turnout by age group
+
+Return(s): 
+    dict, a dictionary where:
+    - key = province/territory abbreviation
+    - value = list of tuples in the form (age_group, turnout_percentage)
+"""
 def get_turnout_by_age(filename):
     turnout_data = {}
     try:
@@ -124,7 +149,18 @@ def get_turnout_by_age(filename):
         return None
     return turnout_data
 
-#function #3: Main function to run the program
+"""
+Function #3: Main Function
+    Entry point of the program. Validates command-line input, loads both datasets,
+    determines the winning party for the selected province, and displays voter turnout
+    by age group along with a bar chart visualization.
+
+Parameter(s):
+    - argv: List of command-line arguments
+
+Return(s):
+    - None
+"""
 def main(argv):
     if len(argv) != 2:
         print("Usage: question2.py <province_abbreviation>")
