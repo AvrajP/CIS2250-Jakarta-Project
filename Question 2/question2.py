@@ -146,9 +146,11 @@ def main(argv):
         
     if prov not in valid_provinces:
         print(f"Invalid province abbreviation. Please enter one of: {', '.join(valid_provinces)}")
+        sys.exit(1)
         
     if prov not in turnout_data:
         print(f"No turnout data found for province {prov}.")
+        sys.exit(1)
 
     winning_party = winning_parties[prov]
     prov_turnout = turnout_data[prov]
